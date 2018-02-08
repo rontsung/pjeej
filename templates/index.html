@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <div class="text-center">
+            <h1>Projecting pjeej</h1>
+          </div>
+      </div>
+      <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                
+               <img src="{{ url_for('static', filename='MEgroup.jpg') }}" width="50%" height="50%" class="img-responsive"  alt="Responsive image">
+            
+              </div>
+        </div>
+      </div>
+  <div class="container">
+          <div class="row">
+          <div class="col-md-12">
+          <!-- {{dfd.d | safe}} -->
+          <table class="table table-striped">
+              <thead>
+                  <tr>
+                    <th>Date</th>
+                    <th>Day of Week</th>
+                    <th>Time</th>
+                    <th>Temp (F)</th>
+                  </tr>
+                </thead>
+            <tbody>
+            {% for row in dfd[1:] %}
+            <tr>
+                <td>{{ row.0 }}</td><td>{{ row.1 }}</td><td>{{ row.2 }}</td><td>{{ row.3 }}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+            </table>
+          </div>
+        </div>
+          </div>
+    
+
+
+  
+
+</body>
+
+</html>
+
