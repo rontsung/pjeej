@@ -26,6 +26,7 @@ with open("timein.csv","a",newline="") as csvfile:
 	#writer.writerow(["2/6/2018","Tuesday","9:02", "30"])
 	#writer.writerow(["2/7/2018","Wednesday","8:58", "33"])
 	#writer.writerow(["2/8/2018","Thursday","9:10", "27"])
+	#writer.writerow(["2/9/2018","Friday","N/A", "27"])
 #df = pd.read_csv("timein.csv")
 #df = df.to_html("df.html", index = False)
 # [1] according to him, left at 8:30 night before 1/12/2018
