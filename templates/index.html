@@ -48,7 +48,7 @@
                   </tr>
                 </thead>
             <tbody>
-            {% for row in dfd[1:] %}
+            {% for index, row in dfd.iterrows() %}
             <tr>
                 <td>{{ row.0 }}</td><td>{{ row.1 }}</td><td>{{ row.2 }}</td><td>{{ row.3 }}</td>
             </tr>
@@ -60,9 +60,14 @@
           </div>
           <div class="container">
             <div class="row">
-                <!-- <div class="col-md-12"> -->
+                <div class="col-md-6">
                     
-                  <img src="{{ url_for('static', filename='graph2.png') }}" class="img-responsive"  alt="MEP!">
+                  <img src="{{ url_for('static', filename='overall.png') }}" class="img-responsive"  alt="Over Time">
+                  </div>
+                  <div class="col-md-6">
+                    
+                  <img src="{{ url_for('static', filename='weekly.png') }}" class="img-responsive"  alt="Weekly">
+                  </div>
                   </div>
           
     
