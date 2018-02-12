@@ -2,7 +2,9 @@ from flask import Flask, jsonify, render_template, request, redirect
 import pandas as pd
 import csv
 import numpy as np
-import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('Agg')
+from matplotlib import pyplot as plt
 
 # Flask setup
 app = Flask(__name__)
