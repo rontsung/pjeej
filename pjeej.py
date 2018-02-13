@@ -27,8 +27,8 @@ with open("timein.csv","a",newline="") as csvfile:
 	#writer.writerow(["2/7/2018","Wednesday","8:58", "33"])
 	#writer.writerow(["2/8/2018","Thursday","9:10", "27"])
 	#writer.writerow(["2/9/2018","Friday","N/A", "27"])
-#df = pd.read_csv("timein.csv")
-#df = df.to_html("df.html", index = False)
+	#writer.writerow(["2/13/2018","Tuesday","8:13", "27"]) #[9]
+
 # [1] according to him, left at 8:30 night before 1/12/2018
 # [2] came in before I did 1/15
 # [3] did not check temperature until 9:50 1/15
@@ -37,3 +37,4 @@ with open("timein.csv","a",newline="") as csvfile:
 # [6] did not check temperature 1/24
 # [7] according to Elias, stayed late for BMH-171 9:30
 # [8] stayed late for BMH-171 (after 7:00 PM)
+# [9] came in before I did after two day absence plus encounter on Thursday
