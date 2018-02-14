@@ -13,5 +13,6 @@ with open("checkin.csv","a",newline="") as csvfile:
 	#writer.writerow(["2/7/18","Wednesday","8:17", "N"])
 	#writer.writerow(["2/8/18","Thursday","8:59", "N"])
 	#writer.writerow(["2/9/18","Friday","N/A", "N/A"])
-	writer.writerow(["2/12/18","Monday","N/A", "N"])
-	writer.writerow(["2/13/18","Tuesday","9:38", "N"])
+	#writer.writerow(["2/12/18","Monday","N/A", "N"])
+	#writer.writerow(["2/13/18","Tuesday","9:38", "N"])
+	writer.writerow(["2/14/18","Wednesday","9:24", "N"])
