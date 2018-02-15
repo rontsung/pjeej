@@ -18,12 +18,17 @@ ntimes = [int(e[0])*3600+int(e[2:])*60 for e in rtimes]
 sec = 0
 totsec = 0
 eachday = {}
+daydiff = {}
+upavg = 0
 eachday["Monday"],eachday["Tuesday"],eachday["Wednesday"],eachday["Thursday"],eachday["Friday"]= 0,0,0,0,0
 for index, row in df.iterrows():
     date = row["Date"]
     time = row["Time"]
     sec = int(time[0])*3600+int(time[2:])*60
     totsec += sec
+    daydiff[date] = 0
+    upavg = totsec/len(daydiff)
+    daydiff[date] = (sec - upavg)/60
     dts[date] = sec
 for day in eachday:
     tt = df.loc[df["Day of Week"] == day]
@@ -76,6 +81,16 @@ plt.yticks(ntimes, rtimes)
 plt.hlines(y=new, xmin=0, xmax=5, color="grey")
 plt.tight_layout()
 plt.savefig("static/weekly.png")
+
+plt.clf()
+plt.scatter(xs, [e for e in daydiff.values()])
+plt.title("Average Difference By Passing Day")
+plt.ylabel("Difference")
+plt.xlabel("Date")
+plt.xticks(newmarks, ndates, rotation = 25)
+plt.hlines(y=0, xmin=0, xmax=len(df), color="grey")
+plt.tight_layout()
+plt.savefig("static/avgdiff.png")
 
 
 
