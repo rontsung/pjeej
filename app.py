@@ -49,12 +49,19 @@ while k < len_dates:
     newmarks.append(int(k))
     ndates.append(dates[int(k)])
     k+=interv
+new = totsec/(len(df))
+hr = str(new/3600)[0]
+minu = str((new-int(hr)*3600)/60)
+minu = minu[:minu.find(".")]
+avg = hr+":"+minu
+
 plt.plot(xs, [e for e in dts.values()], '-o')
 plt.title("Overall")
 plt.ylabel("Time in")
 plt.xlabel("Date")
 plt.xticks(newmarks, ndates, rotation = 25)
 plt.yticks(ntimes, rtimes)
+plt.hlines(y=avg, xmin=0, xmax=len(df), color="grey")
 plt.tight_layout()
 plt.savefig("static/overall.png")
 
@@ -66,14 +73,11 @@ plt.ylabel("Time in")
 plt.xlabel("Day of Week")
 plt.xticks(week, [e for e in eachday.keys()], rotation = 25)
 plt.yticks(ntimes, rtimes)
+plt.hlines(y=avg, xmin=0, xmax=5, color="grey")
 plt.tight_layout()
 plt.savefig("static/weekly.png")
 
-new = totsec/(len(df))
-hr = str(new/3600)[0]
-minu = str((new-int(hr)*3600)/60)
-minu = minu[:minu.find(".")]
-avg = hr+":"+minu
+
 
 
 # # Home route
