@@ -19,6 +19,7 @@ sec = 0
 totsec = 0
 eachday = {}
 daydiff = {}
+weekdiff = {}
 upavg = 0
 eachday["Monday"],eachday["Tuesday"],eachday["Wednesday"],eachday["Thursday"],eachday["Friday"]= 0,0,0,0,0
 for index, row in df.iterrows():
@@ -32,9 +33,17 @@ for index, row in df.iterrows():
     dts[date] = sec
 for day in eachday:
     tt = df.loc[df["Day of Week"] == day]
+    count = 0
+    upavg = 0
+    totsec2 = 0
     for index, row in tt.iterrows():
+        count += 1
+        date = row["Date"]
         time = row["Time"]
         sec = int(time[0])*3600+int(time[2:])*60
+        totsec2 += sec
+        upavg = totsec2/count
+        weekdiff[date] = (sec - upavg)/60
         eachday[day] += sec
     eachday[day] = eachday[day]/len(tt)
 # for row in csv_data:
@@ -50,6 +59,19 @@ interv = len(dates)/5-.1
 k = 0
 ndates = []
 newmarks = []
+newweek = {}
+for e in dates:
+    for f in weekdiff:
+        if e == f:
+            newweek[f] = weekdiff[f]
+overror = 0
+werror = 0
+for e in daydiff:
+    overror += abs(daydiff[e])
+overror = overror/len(daydiff)
+for e in weekdaydiff:
+    werror += abs(weekdaydiff[e])
+werror = werror/len(daydiff)
 while k < len_dates:
     newmarks.append(int(k))
     ndates.append(dates[int(k)])
@@ -83,7 +105,7 @@ plt.tight_layout()
 plt.savefig("static/weekly.png")
 
 plt.clf()
-plt.scatter(xs, [e for e in daydiff.values()])
+plt.plot(xs, [e for e in daydiff.values()], '-o')
 plt.title("Average Difference By Passing Day")
 plt.ylabel("Difference")
 plt.xlabel("Date")
@@ -91,6 +113,16 @@ plt.xticks(newmarks, ndates, rotation = 25)
 plt.hlines(y=0, xmin=0, xmax=len(df), color="grey")
 plt.tight_layout()
 plt.savefig("static/avgdiff.png")
+
+plt.clf()
+plt.plot(xs, [e for e in newweek.values()], '-o')
+plt.title("Average Difference By Weekday")
+plt.ylabel("Difference")
+plt.xlabel("Date")
+plt.xticks(newmarks, ndates, rotation = 25)
+plt.hlines(y=0, xmin=0, xmax=len(df), color="grey")
+plt.tight_layout()
+plt.savefig("static/weekdaydiff.png")
 
 
 
