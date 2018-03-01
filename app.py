@@ -69,8 +69,8 @@ werror = 0
 for e in daydiff:
     overror += abs(daydiff[e])
 overror = overror/len(daydiff)
-for e in weekdaydiff:
-    werror += abs(weekdaydiff[e])
+for e in weekdiff:
+    werror += abs(weekdiff[e])
 werror = werror/len(daydiff)
 while k < len_dates:
     newmarks.append(int(k))
@@ -122,7 +122,7 @@ plt.xlabel("Date")
 plt.xticks(newmarks, ndates, rotation = 25)
 plt.hlines(y=0, xmin=0, xmax=len(df), color="grey")
 plt.tight_layout()
-plt.savefig("static/weekdaydiff.png")
+plt.savefig("stati.png")
 
 
 
@@ -130,7 +130,7 @@ plt.savefig("static/weekdaydiff.png")
 # # Home route
 @app.route("/")
 def home():
-    return render_template("index.html", dfd=df, avg = "Current Average: "+avg)
+    return render_template("index.html", dfd=df, avg = "Current Average: "+avg, overror = "Mean Error: "+str(overror)[:5], werror = "Mean Weekday Error: "+str(werror)[:5])
 
 if __name__ == '__main__':
     app.run(debug=False)
