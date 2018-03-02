@@ -122,7 +122,7 @@ plt.xlabel("Date")
 plt.xticks(newmarks, ndates, rotation = 25)
 plt.hlines(y=0, xmin=0, xmax=len(df), color="grey")
 plt.tight_layout()
-plt.savefig("stati.png")
+plt.savefig("static/weekdaydiff.png")
 
 
 
