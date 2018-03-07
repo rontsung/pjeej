@@ -13,6 +13,8 @@ df = pd.read_csv("timein.csv")
 dts = {}
 rtimes = ["8:00", "8:20", "8:40", "9:00", "9:20"]
 ntimes = [int(e[0])*3600+int(e[2:])*60 for e in rtimes]
+rtimes2 = ["8:00", "8:15", "8:30", "8:45", "9:00"]
+ntimes2 = [int(e[0])*3600+int(e[2:])*60 for e in rtimes2]
 # rdr= csv.reader(open("timein.csv", "r" ) )
 # csv_data = [ row for row in rdr ]
 sec = 0
@@ -82,6 +84,29 @@ minu = str((new-int(hr)*3600)/60)
 minu = minu[:minu.find(".")]
 avg = hr+":"+minu
 
+render_days = {}
+for e in eachday:
+    d = eachday[e]
+    hr2 = str(d/3600)[0]
+    minu2 = str((d-int(hr2)*3600)/60)
+    minu2 = minu2[:minu2.find(".")]
+    avg2 = hr2+":"+minu2
+    render_days[e] = avg2
+
+plt.clf()
+week = np.arange(5)
+plt.plot(week, [e for e in eachday.values()], '-o')
+plt.title("Weekly")
+plt.ylabel("Time in")
+plt.xlabel("Day of Week")
+plt.xticks(week, [e for e in eachday.keys()], rotation = 25)
+
+plt.hlines(y=new, xmin=0, xmax=5, color="grey")
+plt.yticks(ntimes2, rtimes2)
+plt.tight_layout()
+plt.savefig("static/weekly.png")
+
+plt.clf()
 plt.plot(xs, [e for e in dts.values()], '-o')
 plt.title("Overall")
 plt.ylabel("Time in")
@@ -91,18 +116,6 @@ plt.yticks(ntimes, rtimes)
 plt.hlines(y=new, xmin=0, xmax=len(df), color="grey")
 plt.tight_layout()
 plt.savefig("static/overall.png")
-
-plt.clf()
-week = np.arange(5)
-plt.plot(week, [e for e in eachday.values()], '-o')
-plt.title("Weekly")
-plt.ylabel("Time in")
-plt.xlabel("Day of Week")
-plt.xticks(week, [e for e in eachday.keys()], rotation = 25)
-plt.yticks(ntimes, rtimes)
-plt.hlines(y=new, xmin=0, xmax=5, color="grey")
-plt.tight_layout()
-plt.savefig("static/weekly.png")
 
 plt.clf()
 plt.plot(xs, [e for e in daydiff.values()], '-o')
@@ -130,7 +143,7 @@ plt.savefig("static/weekdaydiff.png")
 # # Home route
 @app.route("/")
 def home():
-    return render_template("index.html", dfd=df, avg = "Current Average: "+avg, overror = "Mean Error: "+str(overror)[:5], werror = "Mean Weekday Error: "+str(werror)[:5])
+    return render_template("index.html", dfd=df, avg = "Current Average: "+avg, overror = "Mean Error: "+str(overror)[:5], werror = "Mean Weekday Error: "+str(werror)[:5], dayavg = render_days)
 
 if __name__ == '__main__':
     app.run(debug=False)

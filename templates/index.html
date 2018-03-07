@@ -19,7 +19,7 @@
       </div>
       <div class="container">
           <div class="text-center">
-              <h1>{{avg}}</h1>
+              <font size="3">{{avg}}</font>
             </div>
           </div>
       <div class="container">
@@ -60,12 +60,21 @@
           </div>
           <div class="container">
               <div class="row">
-              <div class="col-md-6">
-                  <h1>{{overror}}</h1>
-                </div>
                   <div class="col-md-6">
-                      <h1>{{werror}}</h1>
-                    </div>
+              <table class="table table-condensed">
+                <thead>
+                  <th>Average by Day</th>
+                </thead>
+                <tbody>
+                  {% for key, value in dayavg.items() %}
+                     <tr>
+                          <td> {{ key }} </td>
+                          <td> {{ value }} </td>
+                     </tr>
+                  {% endfor %}
+                </tbody>
+                  </table>
+                  </div>
                   </div>
             <div class="row">
                 <div class="col-md-6">
@@ -79,6 +88,14 @@
                   </div>
                 </div>
                   <div class="container">
+                      <div class="row">
+                          <div class="col-md-6">
+                              <font size="3">{{overror}}</font>
+                            </div>
+                              <div class="col-md-6">
+                                  <font size = "3">{{werror}}</font>
+                                </div>
+                              </div>
                     <div class="row">
                         <div class="col-md-6">
                             
