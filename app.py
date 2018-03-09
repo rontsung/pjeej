@@ -15,8 +15,7 @@ rtimes = ["8:00", "8:20", "8:40", "9:00", "9:20"]
 ntimes = [int(e[0])*3600+int(e[2:])*60 for e in rtimes]
 rtimes2 = ["8:00", "8:15", "8:30", "8:45", "9:00"]
 ntimes2 = [int(e[0])*3600+int(e[2:])*60 for e in rtimes2]
-# rdr= csv.reader(open("timein.csv", "r" ) )
-# csv_data = [ row for row in rdr ]
+
 sec = 0
 totsec = 0
 eachday = {}
@@ -36,7 +35,7 @@ for index, row in df.iterrows():
 for day in eachday:
     tt = df.loc[df["Day of Week"] == day]
     count = 0
-    upavg = 0
+    upavg2 = 0
     totsec2 = 0
     for index, row in tt.iterrows():
         count += 1
@@ -44,15 +43,11 @@ for day in eachday:
         time = row["Time"]
         sec = int(time[0])*3600+int(time[2:])*60
         totsec2 += sec
-        upavg = totsec2/count
-        weekdiff[date] = (sec - upavg)/60
+        upavg2 = totsec2/count
+        weekdiff[date] = (sec - upavg2)/60
         eachday[day] += sec
     eachday[day] = eachday[day]/len(tt)
-# for row in csv_data:
-    # if row[2]=="Time":
-    #     continue
-    # time = row[2]
-    # totsec = totsec + int(time[0])*3600+int(time[2:])*60
+
 xs = np.arange(len(dts))
 dates = [e for e in dts.keys()]
 len_dates = len(dates)
