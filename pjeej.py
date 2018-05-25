@@ -80,7 +80,11 @@ with open("timein.csv","a",newline="") as csvfile:
 	# writer.writerow(["5/08/2018","Tuesday","8:20", "56"])
 	# writer.writerow(["5/09/2018","Wednesday","9:05", ""])
 	# writer.writerow(["5/10/2018","Thursday","8:52", "54"])
-	writer.writerow(["5/11/2018","Friday","8:31", "67"])
+	# writer.writerow(["5/11/2018","Friday","8:31", "67"])
+	# writer.writerow(["5/15/2018","Tuesday","8:54", "71"])
+	# writer.writerow(["5/16/2018","Wednesday","8:45", "62"])
+	# writer.writerow(["5/23/2018","Wednesday","8:56", "65"]) #[20]
+	writer.writerow(["5/25/2018","Friday","9:12", "72"])
 # [1] according to him, left at 8:30 night before 1/12/2018
 # [2] came in before I did 1/15
 # [3] did not check temperature until 9:50 1/15
@@ -100,3 +104,4 @@ with open("timein.csv","a",newline="") as csvfile:
 # [17] went with the dive team early the day before 
 # [18] estimate based on when I got back into the room (8:50) and he only had the desktop open
 # [19] estimate - he came in between 8:55 and 9:10
+# [20] estimate - came in between 8:52 and 9:02
